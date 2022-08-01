@@ -85,7 +85,7 @@ export default function ListTodo(){
           renderCell: (params)=>{
               return <Tooltip title="Delete" onClick={()=>handleDelete(params)}>
                       <IconButton aria-label="delete">
-                          <DeleteIcon />
+                          <DeleteIcon style={{color: 'red'}} />
                       </IconButton>
                   </Tooltip>
           }, 
@@ -119,10 +119,6 @@ export default function ListTodo(){
                 //   }
                 // }} 
                 // loading={loading}
-          
-                disableColumnFilter
-                disableColumnSelector
-                disableDensitySelector
               />
               <div style={{textAlign: 'right', marginTop: '20px'}}>
                   <Fab onClick={handleCreate}  color="primary" aria-label="add">
