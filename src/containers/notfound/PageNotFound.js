@@ -1,22 +1,24 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import './PageNotFound.css'
 
 export default function PageNotFound() {
+  const navigate = useNavigate()
   return (
     <>
-      <div class="face">
-        <div class="band">
-          <div class="red"></div>
-          <div class="white"></div>
-          <div class="blue"></div>
+      <div className="face">
+        <div className="band">
+          <div className="red"></div>
+          <div className="white"></div>
+          <div className="blue"></div>
         </div>
-        <div class="eyes"></div>
-        <div class="dimples"></div>
-        <div class="mouth"></div>
+        <div className="eyes"></div>
+        <div className="dimples"></div>
+        <div className="mouth"></div>
       </div>
 
       <h1>Oops! Something went wrong!</h1>
-      <div class="btn">Return to Home</div>
+      <div className="btn" onClick={()=> navigate('/')}>Return to Home</div>
     </>
   );
 }

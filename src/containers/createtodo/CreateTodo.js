@@ -28,14 +28,14 @@ const CreateTodo = (props) => {
         initialValues: {
           content: '',
           type: 3,
-          time: moment().format('YYYY-MM-DD HH:mm:ss')
+          time: moment().format('YYYY-MM-DD HH:mm:ss'),
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
             const data = {
                 id: uuidv4(),
                 ...values,
-                time: moment(values.time).format('YYYY-MM-DD HH:mm:ss'),
+                time: moment(values.time).format(),
                 isDone: false
             }
             try{
@@ -90,7 +90,7 @@ const CreateTodo = (props) => {
                     renderInput={(props) => <TextField {...props} style={{marginBottom: '10px', width: '100%'}} />}
                     label="Date"
                     name="time"
-                    value={formik.values.time}
+                    value={formik.values.time} 
                     // helperText={formik.touched.date && formik.errors.date}               
                     onChange={(value) => {
                         formik.setFieldValue('time', Date.parse(value));

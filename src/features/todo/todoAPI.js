@@ -10,3 +10,9 @@ export function deleteData(data) {
     resolve({ data: data })
   );
 }
+
+export function updateData(data) {
+  return new Promise((resolve) =>
+    resolve({ data: data })
+  );
+}

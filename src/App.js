@@ -1,8 +1,9 @@
 import React from  'react';
-import {
-  BrowserRouter , 
+import { 
+  Navigate,
   Route, 
-  Routes,  
+  Routes,
+  useNavigate,  
 } from "react-router-dom";
 import './App.css';
 import ListTodo from './containers/listtodo/ListTodo';  
@@ -16,6 +17,7 @@ import PageNotFound from './containers/notfound/PageNotFound';
 
 export function App() { 
   const [value, setValue] = React.useState('0');
+  const navigate = useNavigate();
   const linkRoute = [
     {
       id: 0,
@@ -23,34 +25,38 @@ export function App() {
       text: 'Danh sách Todo',
       icon:<ListAltIcon />,
       url: '/'
+    },
+    {
+      id: 1,
+      key: '1',
+      text: 'Danh sách Todo đã hoàn thành',
+      icon:<ListAltIcon />,
+      url: '/completed'
     }
   ]
     
   const handleChange = (event, newValue) => { 
-    const currLink = linkRoute.find(e => e.id = newValue*1)
-    
+    const currLink = linkRoute.find(e => e.id === newValue*1);
     if(currLink){
-      // navigate(currLink.url)
+      navigate(currLink.url)
     }
     setValue(newValue);
   };
 
 
-  return (
-    <BrowserRouter>
+  return ( 
       <div>
         <Tabs style={{ marginBottom: '20px'}} value={value} onChange={handleChange} centered aria-label="icon label tabs example">
           {linkRoute.map(e => {
             return <Tab key={e.id} icon={e.icon} iconPosition="start" value={e.key} label={e.text}/>
           })} 
-        </Tabs>
-
+        </Tabs> 
         <Routes> 
+          <Route path="*" element={<Navigate to="/404"/>} /> 
+          <Route path='/404' element={<PageNotFound />} />
           <Route exact path="/" element={<ListTodo />}></Route>
-          <Route path="*" element={<PageNotFound />} />
         </Routes>
-      </div>
-    </BrowserRouter>
+      </div> 
   );
 } 
 
